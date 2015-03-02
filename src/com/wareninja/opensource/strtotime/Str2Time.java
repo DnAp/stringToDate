@@ -33,6 +33,7 @@ public final class Str2Time {
         matchers.add(new YesterdayMatcher());
         matchers.add(new DaysMatcher());
         matchers.add(new WeeksMatcher());
+        matchers.add(new YearsMatcher());
         
         matchers.add(new MinutesMatcher());
         
