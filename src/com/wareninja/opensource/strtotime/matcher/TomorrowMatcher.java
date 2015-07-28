@@ -6,23 +6,21 @@
  *  disclaimer: I code for fun, dunno what I'm coding about :-)
  */
 
-package com.wareninja.opensource.strtotime;
+package com.wareninja.opensource.strtotime.matcher;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.regex.Pattern;
 
-class TomorrowMatcher implements Matcher {
+public class TomorrowMatcher extends Matcher {
 
     private final Pattern tomorrow = Pattern.compile("\\W*tomorrow\\W*");
 
-    public Date tryConvert(String input, String refDateStr) {
-        if (tomorrow.matcher(input).matches()) {
-            Calendar calendar = Calendar.getInstance();
+    public Boolean tryConvert(String input, Calendar calendar) {
+        if (tomorrow.matcher(input).find()) {
             calendar.add(Calendar.DAY_OF_YEAR, +1);
-            return calendar.getTime();
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 }

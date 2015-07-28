@@ -6,13 +6,13 @@
  *  disclaimer: I code for fun, dunno what I'm coding about :-)
  */
 
-package com.wareninja.opensource.strtotime;
+package com.wareninja.opensource.strtotime.matcher;
 
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.Date;
+import java.util.Calendar;
 
-class DateFormatMatcher implements Matcher {
+public class DateFormatMatcher extends Matcher {
 
     private final DateFormat dateFormat;
 
@@ -20,11 +20,12 @@ class DateFormatMatcher implements Matcher {
         this.dateFormat = dateFormat;
     }
 
-    public Date tryConvert(String input, String refDateStr) {
+    public Boolean tryConvert(String input, Calendar refDate) {
         try {
-            return dateFormat.parse(input);
+            refDate.setTime(dateFormat.parse(input));
+            return true;
         } catch (ParseException ex) {
-            return null;
+            return false;
         }
     }
 }
