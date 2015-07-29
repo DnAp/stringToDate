@@ -1,5 +1,6 @@
 package com.dnap.opensource.stringToDate.matcher_ru;
 
+import com.dnap.opensource.stringToDate.MyUtils;
 import com.dnap.opensource.stringToDate.matcher.Matcher;
 
 import java.util.Arrays;
@@ -21,16 +22,17 @@ public class MonthsMatcher extends Matcher {
         monthNameList = new String[][]{
                 {"числа"},
                 {"январь", "января", "январе", "январи", "январей", "январях"},
-                {"февраль", "февраля", "феврале", "феврали", "февралей", "февралях", "март"},
-                {"марта", "марте", "марты", "мартов", "мартах", "марту", "апрель"},
-                {"апреля", "апреле", "апрели", "апрелей", "апрелях", "май", "мая"},
-                {"мае", "майя", "майи", "майю", "июнь", "июня", "июне"},
-                {"июни", "июней", "июнях", "июль", "июля", "июле", "июли"},
-                {"июлей", "июлях", "август", "августа", "августе", "августы", "августов"},
-                {"августах", "августу", "сентябрь", "сентября", "сентябре", "сентябри", "сентябрей"},
-                {"сентябрях", "октябрь", "октября", "октябре", "октябри", "октябрей", "октябрях"},
-                {"ноябрь", "ноября", "ноябре", "ноябри", "ноябрей", "ноябрях", "декабрь"},
-                {"декабря", "декабре", "декабри", "декабрей", "декабрях"}
+                {"февраль", "февраля", "феврале", "феврали", "февралей", "февралях"},
+                {"марта", "марте", "марты", "мартов", "мартах", "марту", "март"},
+                {"апреля", "апреле", "апрели", "апрелей", "апрелях", "апрель"},
+                {"мае", "майя", "майи", "майю", "май", "мая"},
+                {"июни", "июней", "июнях", "июнь", "июня", "июне"},
+                {"июлей", "июлях", "июль", "июля", "июле", "июли"},
+                {"август", "августа", "августе", "августы", "августов", "августах", "августу"},
+                {"сентябрь", "сентября", "сентябре", "сентябри", "сентябрей", "сентябрях"},
+                {"октябрь", "октября", "октябре", "октябри", "октябрей", "октябрях"},
+                {"ноябрь", "ноября", "ноябре", "ноябри", "ноябрей", "ноябрях"},
+                {"декабря", "декабре", "декабри", "декабрей", "декабрях", "декабрь"}
         };
 
         Vector<String> monthNameAll = new Vector<String>();
@@ -38,7 +40,7 @@ public class MonthsMatcher extends Matcher {
         for (String[] aMonthNameList : monthNameList) {
             Collections.addAll(monthNameAll, aMonthNameList);
         }
-        month = Pattern.compile("((^|[^0-9])[012]?\\d|30|31] |)("+String.join("|", monthNameAll)+")");
+        month = Pattern.compile("(((^|[^0-9])[012]?\\d|30|31)\\s+|[^а-я]|^)(" + String.join("|", monthNameAll) + ")([^а-я]|$)");
     }
 
     public Boolean tryConvert(String input, Calendar refDate) {
@@ -46,31 +48,39 @@ public class MonthsMatcher extends Matcher {
         java.util.regex.Matcher matcher = month.matcher(input);
 
         if (matcher.find()) {
-            String dayString = matcher.group(1);
-            String month = matcher.group(3);
-            Integer monthNumber=0;
+            String dayString = matcher.group(2);
+            String month = matcher.group(4);
+            Integer monthNumber = 0;
             for (; monthNumber < monthNameList.length; monthNumber++) {
-                if(Arrays.asList(monthNameList[monthNumber]).contains(month)) {
+                if (Arrays.asList(monthNameList[monthNumber]).contains(month)) {
                     break;
                 }
             }
+            if(monthNumber == monthNameList.length)
+                throw new RuntimeException("MonthsMatcher fail: "+input);
+            monthNumber--;
 
             Integer day;
-            if(!dayString.isEmpty()) {
-                day = Integer.parseInt(matcher.group(1));
+            if (dayString != null && !dayString.isEmpty()) {
+                try {
+                    day = Integer.parseInt(matcher.group(1).trim());
+                } catch (NumberFormatException ignore) {
+                    day = 1;
+                }
             } else {
                 day = 1;
             }
 
-            if(monthNumber==0) { // auto month
-                if(day < refDate.get(Calendar.DATE)) {
+
+            if (monthNumber == -1) { // auto month
+                if (day < refDate.get(Calendar.DATE)) {
                     refDate.add(Calendar.MONTH, 1);
                 }
-            }else{
-                if(monthNumber < refDate.get(Calendar.MONTH)) {
+            } else {
+                if (monthNumber < refDate.get(Calendar.MONTH)) {
                     refDate.add(Calendar.YEAR, 1);
                 }
-                refDate.add(Calendar.MONTH, monthNumber);
+                refDate.set(Calendar.MONTH, monthNumber);
             }
 
             refDate.set(Calendar.DATE, day);

@@ -19,6 +19,7 @@ public class NowMatcher extends Matcher {
     public Boolean tryConvert(String input, Calendar calendar) {
         java.util.regex.Matcher matcher = now.matcher(input);
         if (matcher.find()) {
+            setting.future = false;
             calendar.setTime(new Date());
             stringWithoutMatch = matcher.replaceFirst("");
             return true;

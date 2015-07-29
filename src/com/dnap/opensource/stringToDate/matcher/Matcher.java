@@ -8,23 +8,34 @@
 
 package com.dnap.opensource.stringToDate.matcher;
 
+import com.dnap.opensource.stringToDate.Setting;
+
 import java.util.Calendar;
 
 
 public abstract class Matcher {
 
-	/**
+    protected Setting setting;
+
+    protected String stringWithoutMatch = null;
+
+    /**
 	 * @param input
 	 * @param refDate
-	 * 
+	 *
 	 * @return the converted Date
 	 */
 	public abstract Boolean tryConvert(String input, Calendar refDate);
 
-	protected String stringWithoutMatch = null;
-	protected boolean future = true;
+    public void setSetting(Setting setting) {
+        this.setting = setting;
+    }
 
-	public String getStringWithoutMatch() {
+    public boolean isFuture() {
+        return setting.future;
+    }
+
+    public String getStringWithoutMatch() {
 		return stringWithoutMatch;
 	}
 }

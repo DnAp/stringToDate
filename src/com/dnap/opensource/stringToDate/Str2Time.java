@@ -86,11 +86,13 @@ public class Str2Time {
         matchers.add(new DateMatcher());
 
         // add/sup
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.YearsMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.MonthsMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.DaysMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.WeeksMatcher());
-        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.YearsMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.MinutesMatcher());
+
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.HoursMatcher());
 
         // set time
         matchers.add(new TimeMatcher());
@@ -114,14 +116,17 @@ public class Str2Time {
     public Calendar convert(String input, Calendar calendar) {
         Boolean success = false;
         input = input.toLowerCase(locale).trim();
+        Setting setting = new Setting();
 
         for (Matcher matcher : matchersFull) {
+            matcher.setSetting(setting);
             if(matcher.tryConvert(input, calendar)) {
                 return calendar;
             }
         }
 
         for (Matcher matcher : matchers) {
+            matcher.setSetting(setting);
             if(matcher.tryConvert(input, calendar)) {
                 success = true;
                 //System.out.println(matcher);

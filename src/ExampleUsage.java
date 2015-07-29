@@ -70,14 +70,19 @@ public class ExampleUsage {
 		parseTest(str2Time, "послезавтра в 10:30");
 		parseTest(str2Time, "вчера в 11:45");
 		parseTest(str2Time, "позавчера в 11:45:00");
-		parseTest(str2Time, "сегодня в 11 45");
+		parseTest(str2Time, "сегодня в 11 45"); // !
 		parseTest(str2Time, "20 сентября в 11 45");
+		parseTest(str2Time, "в сентября в 11 45");
+		parseTest(str2Time, "сентября");
+		parseTest(str2Time, "сентября в 3 40 30");
+		parseTest(str2Time, "февраль");
 		parseTest(str2Time, "10 00");
-		parseTest(str2Time, "будильник в 10");
-		parseTest(str2Time, "в час дня");
-		parseTest(str2Time, "в час ночи");
-		parseTest(str2Time, "в 10 часов утра");
+		parseTest(str2Time, "в 10");
 		parseTest(str2Time, "в 10 часов вечера");
+		parseTest(str2Time, "час дня");
+		parseTest(str2Time, "час ночи");
+		parseTest(str2Time, "2 ночи");
+		parseTest(str2Time, "в 10 часов утра");
 		parseTest(str2Time, "завтра в два");
 
 

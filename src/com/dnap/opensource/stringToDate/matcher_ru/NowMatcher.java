@@ -23,6 +23,7 @@ public class NowMatcher extends Matcher {
         if (matcher.find()) {
             calendar.setTime(new Date());
             stringWithoutMatch = matcher.replaceFirst("");
+            setting.future = false;
             return true;
         }
         stringWithoutMatch = null;

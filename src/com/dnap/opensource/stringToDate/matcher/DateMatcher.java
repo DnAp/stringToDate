@@ -21,7 +21,7 @@ public class DateMatcher extends Matcher {
             int dd = Integer.parseInt(matcher.group(3));
 
             calendar.set(Calendar.YEAR, yy);
-            calendar.set(Calendar.MONTH, mm);
+            calendar.set(Calendar.MONTH, mm-1);
             calendar.set(Calendar.DAY_OF_MONTH, dd);
             calendar.set(Calendar.HOUR_OF_DAY, 0);
             calendar.set(Calendar.MINUTE, 0);
