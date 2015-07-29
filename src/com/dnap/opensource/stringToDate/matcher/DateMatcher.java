@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wareninja.opensource.strtotime.matcher;
+package com.dnap.opensource.stringToDate.matcher;
 
 import org.apache.commons.lang.StringUtils;
 

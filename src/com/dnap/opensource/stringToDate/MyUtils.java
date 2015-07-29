@@ -1,13 +1,13 @@
 /***
  *   Copyleft 2014 - WareNinja.com / Rumble In The Jungle!
  * 
- *  @author: yg@wareninja.com
+ *  @author: yg@dnap.com
  *  @see https://github.com/WareNinja
  *  disclaimer: I code for fun, dunno what I'm coding about :-)
  */
 
 
-package com.wareninja.opensource.strtotime;
+package com.dnap.opensource.stringToDate;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

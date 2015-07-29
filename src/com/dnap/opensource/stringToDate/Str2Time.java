@@ -1,14 +1,15 @@
 /***
  *   Copyleft 2014 - WareNinja.com / Rumble In The Jungle!
  * 
- *  @author: yg@wareninja.com
+ *  @author: yg@dnap.com
  *  @see https://github.com/WareNinja
  *  disclaimer: I code for fun, dunno what I'm coding about :-)
  */
 
-package com.wareninja.opensource.strtotime;
+package com.dnap.opensource.stringToDate;
 
-import com.wareninja.opensource.strtotime.matcher.*;
+import com.dnap.opensource.stringToDate.matcher.*;
+import com.dnap.opensource.stringToDate.matcher_ru.StringToNumberMatcher;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -22,12 +23,28 @@ import java.util.*;
  * Date bla1 = Str2Time.convert("3 days");
  * Date bla2 = Str2Time.convert("-3 days");
  */
-public final class Str2Time {
-	
-    private static final List<Matcher> matchers;
-    private static final List<Matcher> matchersFull;
+public class Str2Time {
 
-    static {
+    private List<Matcher> matchers;
+    private List<Matcher> matchersFull;
+    private Locale locale;
+
+    public Str2Time() {
+        this(Locale.ENGLISH);
+    }
+
+    public Str2Time(Locale locale) {
+        this.locale = locale;
+        if(locale.getLanguage().equalsIgnoreCase("en")) {
+            initEnLocale();
+        }
+        if(locale.getLanguage().equalsIgnoreCase("ru")) {
+            initRuLocale();
+        }
+    }
+
+    private void initEnLocale()
+    {
         matchersFull = new LinkedList<Matcher>();
 
         matchersFull.add(new DateFormatMatcher(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")));// format used by FACEBOOK
@@ -51,26 +68,45 @@ public final class Str2Time {
 
         // set time
         matchers.add(new TimeMatcher());
-
-
-        // NOTE: you can add more custom matchers as you like!!!
     }
 
-    public static void registerMatcher(Matcher matcher) {
-        matchers.add(0, matcher);
+
+    private void initRuLocale()
+    {
+        matchersFull = new LinkedList<Matcher>();
+
+        matchers = new LinkedList<Matcher>();
+        matchers.add(new StringToNumberMatcher());
+        // set full date
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.NowMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.BeforeYesterdayMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.AfterTomorrowMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.TomorrowMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.YesterdayMatcher());
+        matchers.add(new DateMatcher());
+
+        // add/sup
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.MonthsMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.DaysMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.WeeksMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.YearsMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.MinutesMatcher());
+
+        // set time
+        matchers.add(new TimeMatcher());
     }
-    
-    public static Date convert(String input) {
+
+    public Date convert(String input) {
     	return convert(input, null);
     }
-    public static Date convert(String input, Date refDate) {
+    public Date convert(String input, Date refDate) {
         Calendar calendar = Calendar.getInstance();
         if(refDate != null) {
             calendar.setTime(refDate);
         }
 
         Boolean success = false;
-        input = input.toLowerCase(Locale.ENGLISH).trim();
+        input = input.toLowerCase(locale).trim();
 
         for (Matcher matcher : matchersFull) {
             if(matcher.tryConvert(input, calendar)) {
@@ -81,12 +117,14 @@ public final class Str2Time {
         for (Matcher matcher : matchers) {
             if(matcher.tryConvert(input, calendar)) {
                 success = true;
+                //System.out.println(matcher);
                 // @todo refactor
                 if(matcher.getStringWithoutMatch() != null) {
                     input = matcher.getStringWithoutMatch();
                 }
             }
         }
+        //System.out.println(input);
 
         if(success){
             return calendar.getTime();
@@ -95,7 +133,4 @@ public final class Str2Time {
         return null;
     }
 
-    private Str2Time() {
-        throw new UnsupportedOperationException("cannot instantiate");
-    }
 }

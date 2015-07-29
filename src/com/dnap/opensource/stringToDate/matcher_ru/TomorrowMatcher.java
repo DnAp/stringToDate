@@ -1,19 +1,21 @@
 /***
  *   Copyleft 2014 - WareNinja.com / Rumble In The Jungle!
  * 
- *  @author: yg@wareninja.com
+ *  @author: yg@dnap.com
  *  @see https://github.com/WareNinja
  *  disclaimer: I code for fun, dunno what I'm coding about :-)
  */
 
-package com.wareninja.opensource.strtotime.matcher;
+package com.dnap.opensource.stringToDate.matcher_ru;
+
+import com.dnap.opensource.stringToDate.matcher.Matcher;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
 public class TomorrowMatcher extends Matcher {
 
-    private final Pattern tomorrow = Pattern.compile("\\W*tomorrow\\W*");
+    private final Pattern tomorrow = Pattern.compile("завтра");
 
     public Boolean tryConvert(String input, Calendar calendar) {
         if (tomorrow.matcher(input).find()) {
