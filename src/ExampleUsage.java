@@ -87,6 +87,13 @@ public class ExampleUsage {
 		parseTest(str2Time, "сегодня ночью");
 		parseTest(str2Time, "завтра ночью");
 		parseTest(str2Time, "завтра в два");
+		parseTest(str2Time, "через 2 недели");
+		parseTest(str2Time, "через 2 недели и один день");
+		parseTest(str2Time, "через час");
+		parseTest(str2Time, "через 2 дня днем");
+		parseTest(str2Time, "через 2 дня утром");
+		parseTest(str2Time, "завтра через 2 часа qwert");
+		parseTest(str2Time, "через 30 минут");
 
 
 

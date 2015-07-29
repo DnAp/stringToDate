@@ -86,6 +86,7 @@ public class Str2Time {
         matchers.add(new DateMatcher());
 
         // add/sup
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.ThroughMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.YearsMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.MonthsMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.DaysMatcher());
@@ -130,7 +131,6 @@ public class Str2Time {
             if(matcher.tryConvert(input, calendar)) {
                 success = true;
                 //System.out.println(matcher);
-                // @todo refactor
                 if(matcher.getStringWithoutMatch() != null) {
                     input = matcher.getStringWithoutMatch();
                 }
