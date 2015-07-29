@@ -24,6 +24,7 @@ public class DaysMatcher extends Matcher {
     	if (matcher.find()) {
             int d = Integer.parseInt(matcher.group(1));
             refDate.add(Calendar.DAY_OF_YEAR, d);
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
         }
 

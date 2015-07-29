@@ -21,6 +21,7 @@ public class WeeksMatcher extends Matcher {
         if (matcher.find()) {
             int w = Integer.parseInt(matcher.group(1));
             calendar.add(Calendar.DAY_OF_YEAR, w * 7);
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
         }
 

@@ -14,15 +14,16 @@ import java.util.regex.Pattern;
 
 public class NowMatcher extends Matcher {
 
-    private static final Pattern now = Pattern.compile("\\W*now\\W*");
-    private static final Pattern today = Pattern.compile("\\W*today\\W*");
+    private static final Pattern now = Pattern.compile("(now|today)");
 
-    public Boolean tryConvert(String input, Calendar refDate) {
-        if (now.matcher(input).find() || today.matcher(input).find()) {
-            refDate.setTime(new Date());
+    public Boolean tryConvert(String input, Calendar calendar) {
+        java.util.regex.Matcher matcher = now.matcher(input);
+        if (matcher.find()) {
+            calendar.setTime(new Date());
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
-        } else {
-            return false;
         }
+        stringWithoutMatch = null;
+        return false;
     }
 }

@@ -8,7 +8,6 @@
 
 package com.dnap.opensource.stringToDate.matcher;
 
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -24,7 +23,7 @@ public class DaysMatcher extends Matcher {
     	if (matcher.find()) {
             int d = Integer.parseInt(matcher.group(1));
             refDate.add(Calendar.DAY_OF_YEAR, d);
-            stringWithoutMatch = StringUtils.replace(input, matcher.group(), "");
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
         }
 

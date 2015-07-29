@@ -30,7 +30,7 @@ public class StringToNumberMatcher extends Matcher {
         numbers = new Pattern[numbersVariant.length];
 
         for (int i = 0; i < numbersVariant.length; i++) {
-            numbers[i] = Pattern.compile("([^а-я]|^)("+String.join("|", numbersVariant[i])+")([^а-я]|$)");
+            numbers[i] = Pattern.compile("([^а-я]|^)("+ String.join("|", numbersVariant[i])+")([^а-я]|$)");
         }
 
 

@@ -16,11 +16,13 @@ public class YesterdayMatcher extends Matcher {
     private final Pattern yesterday = Pattern.compile("yesterday");
 
     public Boolean tryConvert(String input, Calendar calendar) {
-        if (yesterday.matcher(input).find()) {
+        java.util.regex.Matcher matcher = yesterday.matcher(input);
+        if (matcher.find()) {
             calendar.add(Calendar.DAY_OF_YEAR, -1);
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
-        } else {
-            return false;
         }
+        stringWithoutMatch = null;
+        return false;
     }
 }

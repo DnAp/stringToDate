@@ -9,7 +9,6 @@
 package com.dnap.opensource.stringToDate.matcher_ru;
 
 import com.dnap.opensource.stringToDate.matcher.Matcher;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +22,7 @@ public class NowMatcher extends Matcher {
         java.util.regex.Matcher matcher = now.matcher(input);
         if (matcher.find()) {
             calendar.setTime(new Date());
-            stringWithoutMatch = StringUtils.replace(input, matcher.group(), "");
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
         }
         stringWithoutMatch = null;

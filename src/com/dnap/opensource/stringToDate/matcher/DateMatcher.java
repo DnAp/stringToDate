@@ -4,7 +4,6 @@
  */
 package com.dnap.opensource.stringToDate.matcher;
 
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -27,8 +26,7 @@ public class DateMatcher extends Matcher {
             calendar.set(Calendar.HOUR_OF_DAY, 0);
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
-
-            stringWithoutMatch = StringUtils.replace(input, matcher.group(), "");
+            stringWithoutMatch = matcher.replaceFirst("");
 
             return true;
         }

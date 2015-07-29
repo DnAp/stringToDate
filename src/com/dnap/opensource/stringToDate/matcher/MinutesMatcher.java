@@ -16,6 +16,7 @@ public class MinutesMatcher extends Matcher {
         if (matcher.find()) {
             int m = Integer.parseInt(matcher.group(1));
             calendar.add(Calendar.MINUTE, m);
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
         }
 

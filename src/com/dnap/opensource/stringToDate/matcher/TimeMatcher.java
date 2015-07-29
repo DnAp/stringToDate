@@ -24,7 +24,12 @@ public class TimeMatcher extends Matcher {
             }
             calendar.set(Calendar.HOUR_OF_DAY, hh);
             calendar.set(Calendar.MINUTE, mm);
+            if(future && calendar.before(Calendar.getInstance())) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+
             calendar.set(Calendar.SECOND, ss);
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
         }
 

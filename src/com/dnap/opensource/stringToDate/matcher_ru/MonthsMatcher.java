@@ -1,7 +1,6 @@
 package com.dnap.opensource.stringToDate.matcher_ru;
 
 import com.dnap.opensource.stringToDate.matcher.Matcher;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -39,9 +38,7 @@ public class MonthsMatcher extends Matcher {
         for (String[] aMonthNameList : monthNameList) {
             Collections.addAll(monthNameAll, aMonthNameList);
         }
-
         month = Pattern.compile("((^|[^0-9])[012]?\\d|30|31] |)("+String.join("|", monthNameAll)+")");
-
     }
 
     public Boolean tryConvert(String input, Calendar refDate) {
@@ -77,7 +74,7 @@ public class MonthsMatcher extends Matcher {
             }
 
             refDate.set(Calendar.DATE, day);
-            stringWithoutMatch = StringUtils.replace(input, matcher.group(), "");
+            stringWithoutMatch = matcher.replaceFirst("");
 
             return true;
         }

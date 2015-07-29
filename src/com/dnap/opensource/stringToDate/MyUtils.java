@@ -9,12 +9,12 @@
 
 package com.dnap.opensource.stringToDate;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import org.apache.commons.lang3.StringUtils;
 
 public class MyUtils {
 
@@ -62,7 +62,7 @@ public class MyUtils {
 		
 		String resp = "";
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd\tHH:mm:ss\tZ", Locale.US);
 			resp = sdf.format(date);
 		} catch (Exception ex){}
 		return resp;
@@ -70,9 +70,9 @@ public class MyUtils {
 	public static String getFormattedDate(Long millis, String timeZone) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
-		if (!StringUtils.isEmpty(timeZone)) sdf.setTimeZone(TimeZone.getTimeZone(timeZone));
+		if (!timeZone.isEmpty()) sdf.setTimeZone(TimeZone.getTimeZone(timeZone));
 		
 		return millis!=null?sdf.format( new Date(millis) ):"";
 	}
-	
+
 }

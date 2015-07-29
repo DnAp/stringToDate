@@ -97,20 +97,27 @@ public class Str2Time {
     }
 
     public Date convert(String input) {
-    	return convert(input, null);
+    	return convert(input, new Date());
     }
     public Date convert(String input, Date refDate) {
         Calendar calendar = Calendar.getInstance();
         if(refDate != null) {
             calendar.setTime(refDate);
         }
+        calendar = convert(input, calendar);
+        if(calendar != null) {
+            return calendar.getTime();
+        }
+        return null;
+    }
 
+    public Calendar convert(String input, Calendar calendar) {
         Boolean success = false;
         input = input.toLowerCase(locale).trim();
 
         for (Matcher matcher : matchersFull) {
             if(matcher.tryConvert(input, calendar)) {
-                return calendar.getTime();
+                return calendar;
             }
         }
 
@@ -127,7 +134,7 @@ public class Str2Time {
         //System.out.println(input);
 
         if(success){
-            return calendar.getTime();
+            return calendar;
         }
 
         return null;

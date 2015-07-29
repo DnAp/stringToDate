@@ -1,7 +1,7 @@
 /***
  *   Copyleft 2014 - WareNinja.com / Rumble In The Jungle!
  * 
- *  @author: yg@dnap.com
+ *  @author: yg@wareninja.com
  *  @see https://github.com/WareNinja
  *  disclaimer: I code for fun, dunno what I'm coding about :-)
  */
@@ -66,12 +66,18 @@ public class ExampleUsage {
 		parseTest(str2Time, "2015-03-12 11 45");
 		parseTest(str2Time, "сейчас");
 		parseTest(str2Time, "завтра 10:30");
+		parseTest(str2Time, "завтра в 10 30");
 		parseTest(str2Time, "послезавтра в 10:30");
 		parseTest(str2Time, "вчера в 11:45");
 		parseTest(str2Time, "позавчера в 11:45:00");
 		parseTest(str2Time, "сегодня в 11 45");
 		parseTest(str2Time, "20 сентября в 11 45");
-		parseTest(str2Time, "в час");
+		parseTest(str2Time, "10 00");
+		parseTest(str2Time, "будильник в 10");
+		parseTest(str2Time, "в час дня");
+		parseTest(str2Time, "в час ночи");
+		parseTest(str2Time, "в 10 часов утра");
+		parseTest(str2Time, "в 10 часов вечера");
 		parseTest(str2Time, "завтра в два");
 
 
@@ -79,7 +85,7 @@ public class ExampleUsage {
 	}
 
 	private static void parseTest(Str2Time str2Time, String timeString) {
-		System.out.println(timeString + " -> " + MyUtils.getFormattedDate( str2Time.convert(timeString) ));
+		System.out.println(timeString + "\t->\t" + MyUtils.getFormattedDate( str2Time.convert(timeString) ));
 	}
 
 }

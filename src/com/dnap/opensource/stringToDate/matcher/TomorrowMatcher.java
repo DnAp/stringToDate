@@ -13,14 +13,16 @@ import java.util.regex.Pattern;
 
 public class TomorrowMatcher extends Matcher {
 
-    private final Pattern tomorrow = Pattern.compile("\\W*tomorrow\\W*");
+    private static final Pattern tomorrow = Pattern.compile("(tomorrow)");
 
     public Boolean tryConvert(String input, Calendar calendar) {
-        if (tomorrow.matcher(input).find()) {
+        java.util.regex.Matcher matcher = tomorrow.matcher(input);
+        if (matcher.find()) {
             calendar.add(Calendar.DAY_OF_YEAR, +1);
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
-        } else {
-            return false;
         }
+        stringWithoutMatch = null;
+        return false;
     }
 }

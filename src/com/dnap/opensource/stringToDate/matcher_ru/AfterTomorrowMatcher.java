@@ -9,7 +9,6 @@
 package com.dnap.opensource.stringToDate.matcher_ru;
 
 import com.dnap.opensource.stringToDate.matcher.Matcher;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -22,7 +21,7 @@ public class AfterTomorrowMatcher extends Matcher {
         java.util.regex.Matcher matcher = tomorrow.matcher(input);
         if (matcher.find()) {
             calendar.add(Calendar.DAY_OF_YEAR, +2);
-            stringWithoutMatch = StringUtils.replace(input, matcher.group(), "");
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
         }
         stringWithoutMatch = null;

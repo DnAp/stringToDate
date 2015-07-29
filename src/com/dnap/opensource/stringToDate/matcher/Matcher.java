@@ -22,6 +22,7 @@ public abstract class Matcher {
 	public abstract Boolean tryConvert(String input, Calendar refDate);
 
 	protected String stringWithoutMatch = null;
+	protected boolean future = true;
 
 	public String getStringWithoutMatch() {
 		return stringWithoutMatch;

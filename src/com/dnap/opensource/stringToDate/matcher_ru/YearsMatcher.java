@@ -23,6 +23,7 @@ public class YearsMatcher extends Matcher {
         if (matcher.find()) {
             int y = Integer.parseInt(matcher.group(1));
             calendar.add(Calendar.DAY_OF_YEAR, y * 366);
+            stringWithoutMatch = matcher.replaceFirst("");
             return true;
         }
 
