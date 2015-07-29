@@ -81,8 +81,11 @@ public class ExampleUsage {
 		parseTest(str2Time, "в 10 часов вечера");
 		parseTest(str2Time, "час дня");
 		parseTest(str2Time, "час ночи");
+		parseTest(str2Time, "2 часа");
 		parseTest(str2Time, "2 ночи");
 		parseTest(str2Time, "в 10 часов утра");
+		parseTest(str2Time, "сегодня ночью");
+		parseTest(str2Time, "завтра ночью");
 		parseTest(str2Time, "завтра в два");
 
 
