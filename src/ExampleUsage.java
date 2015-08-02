@@ -94,8 +94,11 @@ public class ExampleUsage {
 		parseTest(str2Time, "через 2 дня утром");
 		parseTest(str2Time, "завтра через 2 часа qwert");
 		parseTest(str2Time, "через 30 минут");
-
-
+		parseTest(str2Time, "через 4 дня");
+		parseTest(str2Time, "в воскресенье");
+		parseTest(str2Time, "в понедельник");
+		parseTest(str2Time, "в среду");
+		parseTest(str2Time, "в сб");
 
 	}
 
