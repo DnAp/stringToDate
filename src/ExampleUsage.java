@@ -101,6 +101,8 @@ public class ExampleUsage {
 		parseTest(str2Time, "го в сб тусить");
 		parseTest(str2Time, "через неделю");
 		parseTest(str2Time, "через месяц");
+		parseTest(str2Time, "через год");
+		parseTest(str2Time, "через голову");
 
 	}
 

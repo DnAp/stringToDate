@@ -91,6 +91,7 @@ public class Str2Time {
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.DaysMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.WeeksMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.WeekdayMatcher());
+        matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.ThroughMatcher());
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.MinutesMatcher());
 
         matchers.add(new com.dnap.opensource.stringToDate.matcher_ru.HoursMatcher());

@@ -31,6 +31,7 @@ public class ThroughMatcher extends Matcher {
 
         java.util.regex.Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
+            Boolean success = false;
             String through = matcher.group(2).trim();
             if(through.isEmpty())
                 return false;
@@ -47,9 +48,11 @@ public class ThroughMatcher extends Matcher {
                     //noinspection MagicConstant,ResourceType
                     calendar.add(entry.getKey(), interval);
                     through = matcherSub.replaceFirst("$4");
+                    success = true;
                 }
             }
-
+            if(!success)
+                return false;
             through = through.trim();
 
             if(through.isEmpty()) {
@@ -64,7 +67,7 @@ public class ThroughMatcher extends Matcher {
                 l++;
             }
 
-            stringWithoutMatch = matcher.replaceFirst("$1"+out.replaceAll("$", "\\$"));
+            stringWithoutMatch = matcher.replaceFirst("$1"+Pattern.quote(out));
             return true;
         }
 
