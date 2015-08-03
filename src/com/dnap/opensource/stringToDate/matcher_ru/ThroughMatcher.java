@@ -64,7 +64,7 @@ public class ThroughMatcher extends Matcher {
                 l++;
             }
 
-            stringWithoutMatch = matcher.replaceFirst("$1"+out);
+            stringWithoutMatch = matcher.replaceFirst("$1"+out.replaceAll("$", "\\$"));
             return true;
         }
 

@@ -84,7 +84,7 @@ public class MonthsMatcher extends Matcher {
             }
 
             refDate.set(Calendar.DATE, day);
-            stringWithoutMatch = matcher.replaceFirst("");
+            stringWithoutMatch = matcher.replaceFirst("$5");
 
             return true;
         }

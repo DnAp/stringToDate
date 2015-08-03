@@ -99,6 +99,8 @@ public class ExampleUsage {
 		parseTest(str2Time, "в понедельник");
 		parseTest(str2Time, "в среду");
 		parseTest(str2Time, "го в сб тусить");
+		parseTest(str2Time, "через неделю");
+		parseTest(str2Time, "через месяц");
 
 	}
 

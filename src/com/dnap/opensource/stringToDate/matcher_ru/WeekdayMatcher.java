@@ -63,7 +63,7 @@ public class WeekdayMatcher extends Matcher {
             } else {
                 refDate.set(Calendar.DAY_OF_WEEK, dayNumber);
             }
-            stringWithoutMatch = matcher.replaceFirst("");
+            stringWithoutMatch = matcher.replaceFirst("$1$3");
 
             return true;
         }
