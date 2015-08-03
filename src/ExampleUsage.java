@@ -62,7 +62,7 @@ public class ExampleUsage {
 		parseTest(str2Time, "2015-3-12 23:49");
 		parseTest(str2Time, "2015-03-12");
 		parseTest(str2Time, "20150312");
-		parseTest(str2Time, "20150312 +2 DAY"); // fixme
+		parseTest(str2Time, "20150312 +2 ДНЯ");
 		parseTest(str2Time, "2015-03-12 11 45");
 		parseTest(str2Time, "сейчас");
 		parseTest(str2Time, "завтра 10:30");
