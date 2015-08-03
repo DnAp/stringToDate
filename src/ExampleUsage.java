@@ -62,7 +62,7 @@ public class ExampleUsage {
 		parseTest(str2Time, "2015-3-12 23:49");
 		parseTest(str2Time, "2015-03-12");
 		parseTest(str2Time, "20150312");
-		parseTest(str2Time, "20150312 +2 DAY");
+		parseTest(str2Time, "20150312 +2 DAY"); // fixme
 		parseTest(str2Time, "2015-03-12 11 45");
 		parseTest(str2Time, "сейчас");
 		parseTest(str2Time, "завтра 10:30");
@@ -98,12 +98,12 @@ public class ExampleUsage {
 		parseTest(str2Time, "в воскресенье");
 		parseTest(str2Time, "в понедельник");
 		parseTest(str2Time, "в среду");
-		parseTest(str2Time, "в сб");
+		parseTest(str2Time, "го в сб тусить");
 
 	}
 
 	private static void parseTest(Str2Time str2Time, String timeString) {
-		System.out.println(timeString + "\t->\t" + MyUtils.getFormattedDate( str2Time.convert(timeString) ));
+		System.out.println(timeString + "\t->\t" + MyUtils.getFormattedDate( str2Time.convert(timeString) ) +"\t" + str2Time.getBefore() + " ... " + str2Time.getAfter());
 	}
 
 }

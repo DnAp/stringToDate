@@ -114,8 +114,12 @@ public class Str2Time {
         return null;
     }
 
+    String lastInput = "";
+    String lastRemaining = "";
+
     public Calendar convert(String input, Calendar calendar) {
         Boolean success = false;
+        lastInput = input;
         input = input.toLowerCase(locale).trim();
         Setting setting = new Setting();
 
@@ -138,12 +142,56 @@ public class Str2Time {
             }
         }
         //System.out.println(input);
-
+        lastRemaining = input;
         if(success){
             return calendar;
         }
 
         return null;
     }
+
+    public String getBefore() {
+        String input = lastInput.toLowerCase();
+        if(lastRemaining.length() == 0 || lastRemaining.equals(input))
+            return lastRemaining;
+
+        String result = "";
+        for (int i = 0; i < lastInput.length(); i++) {
+            if(i >= lastRemaining.length())
+                break;
+            if(input.charAt(i) == lastRemaining.charAt(i)) {
+                result += lastInput.charAt(i);
+            } else {
+                break;
+            }
+        }
+        return result;
+    }
+
+    public String getAfter() {
+        String input = lastInput.toLowerCase();
+        //System.out.println(lastRemaining);
+        if(lastRemaining.length() == 0 || lastRemaining.equals(input))
+            return "";
+
+        String result = "";
+        int j = lastRemaining.length()-1;
+        for (int i = lastInput.length()-1; i >= 0; i--) {
+            if(j < 0)
+                break;
+            //System.out.println(lastRemaining.charAt(j)+ " "+input.charAt(i));
+
+            if(input.charAt(i) == lastRemaining.charAt(j)) {
+                result = lastInput.charAt(i) + result;
+            } else {
+                break;
+            }
+            j--;
+        }
+
+
+        return result;
+    }
+
 
 }

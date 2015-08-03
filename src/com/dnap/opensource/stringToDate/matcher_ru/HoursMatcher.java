@@ -43,7 +43,7 @@ public class HoursMatcher extends Matcher {
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
 
-            stringWithoutMatch = matcher.replaceFirst("");
+            stringWithoutMatch = matcher.replaceFirst("$8");
             return true;
         }
         // (([\-\+]?\d+)\s+|)\s*((ночь|ночи|ночью)|(дня)|(вечера|вечером)|(утра|утром))([^а-я]|$)
@@ -88,7 +88,7 @@ public class HoursMatcher extends Matcher {
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
 
-            stringWithoutMatch = matcher.replaceFirst("");
+            stringWithoutMatch = matcher.replaceFirst("$8");
             return true;
         }
         stringWithoutMatch = null;

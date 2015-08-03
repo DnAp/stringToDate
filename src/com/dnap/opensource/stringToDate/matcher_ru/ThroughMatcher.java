@@ -44,7 +44,7 @@ public class ThroughMatcher extends Matcher {
                     if(matcherSub.group(1).length() > 0){
                         interval = Integer.parseInt(matcherSub.group(2));
                     }
-                    //noinspection MagicConstant
+                    //noinspection MagicConstant,ResourceType
                     calendar.add(entry.getKey(), interval);
                     through = matcherSub.replaceFirst("$4");
                 }
