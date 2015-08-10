@@ -58,6 +58,7 @@ public class ExampleUsage {
 		}
 		str2Time = new Str2Time(new Locale("ru", "RU"));
 
+
 		parseTest(str2Time, "2015-03-12 23:50:59");
 		parseTest(str2Time, "2015-3-12 23:49");
 		parseTest(str2Time, "2015-03-12");
@@ -77,6 +78,7 @@ public class ExampleUsage {
 		parseTest(str2Time, "сентября в 3 40 30");
 		parseTest(str2Time, "февраль");
 		parseTest(str2Time, "10 00");
+		parseTest(str2Time, "на 10 30 привет");
 		parseTest(str2Time, "в 10");
 		parseTest(str2Time, "в 10 часов вечера");
 		parseTest(str2Time, "час дня");
